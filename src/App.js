@@ -1,23 +1,23 @@
 import logo from './logo.svg';
 import './App.css';
+import { useReducer } from 'react';
+import {COUNTRUP,COUNTRDOWN,COUNTRCLEAR,COUNTRMULTI} from './store/actions/counter.action'
+import {appReducer} from './store/reducers/counter.reducer'
 
+
+
+
+let initalState = 0
 function App() {
+  const [myState,dispatch] = useReducer(appReducer,initalState)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>{myState}</h1>
+      <button onClick={()=>dispatch(COUNTRUP)}> up</button>
+      <button onClick={()=>dispatch(COUNTRDOWN)}> down</button>
+      <button onClick={()=>dispatch(COUNTRMULTI)}> multi</button>
+      <button onClick={()=>dispatch(COUNTRCLEAR)}> clear</button>
+
     </div>
   );
 }
